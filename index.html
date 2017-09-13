@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="lib/bootstrap.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        .inputError{
+            color: red;
+        }
+        .wrapper{
+            width: 200px;
+            margin: 20px auto;
+        }
+        .wram{
+            position: relative;
+        }
+        .moveCheck{
+            position: absolute;
+            top:35px;
+            left: 180px;
+            color: green;
+        }
+
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="signUpController">
+    <div class="wrapper">
+        <h2>注册</h2>
+        <form name="signUpForm" ng-submit="submitForm()">
+            <div class="form-group wram" ng-class="{'has-success':signUpForm.username.$valid}">
+                <label>用户名：</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       ng-model="userdata.username"
+                       ng-minlength="4"
+                       ng-maxlength="32"
+                       required>
+                <p class="fa fa-check moveCheck" ng-if="signUpForm.username.$valid"></p>
+                <p class="inputError" ng-if="(signUpForm.username.$error.minlength||signUpForm.username.$error.minlength) && signUpForm.username.$touched">用户名长度为4-32位</p>
+                <p class="inputError" ng-if="signUpForm.username.$error.required && signUpForm.username.$touched">用户名不可为空</p>
+            </div>
+            <div class="form-group wram" ng-class="{'has-success':signUpForm.password1.$valid}">
+                <label>密码：</label>
+                <input type="password"
+                       name="password1"
+                       class="form-control"
+                       ng-model="userdata.password1"
+                       ng-minlength="6"
+                       required>
+                <p class="fa fa-check moveCheck" ng-if="signUpForm.password1.$valid"></p>
+                <p class="inputError" ng-if="signUpForm.password1.$error.minlength && signUpForm.password1.$touched">请输入至少6位的密码</p>
+                <p class="inputError" ng-if="signUpForm.password1.$error.required && signUpForm.password1.$touched">密码不可为空</p>
+            </div>
+            <div class="form-group wram" ng-class="{'has-success':signUpForm.password2.$valid}">
+                <label>确认密码：</label>
+                <input type="password"
+                       name="password2"
+                       class="form-control"
+                       ng-model="userdata.password2"
+                       compare="userdata.password1"
+                       required>
+                <p class="fa fa-check moveCheck" ng-if="signUpForm.password2.$valid"></p>
+                <p class="inputError" ng-if="signUpForm.password2.$error.compare && signUpForm.password2.$touched">请输入相同的密码</p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" ng-disabled="signUpForm.$invalid">注册</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="lib/angular1.6.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
