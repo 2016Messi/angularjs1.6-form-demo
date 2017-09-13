@@ -37,6 +37,7 @@
                        ng-model="userdata.username"
                        ng-minlength="4"
                        ng-maxlength="32"
+                       placeholder="请输入4到32位的用户名"
                        required>
                 <p class="fa fa-check moveCheck" ng-if="signUpForm.username.$valid"></p>
                 <p class="inputError" ng-if="(signUpForm.username.$error.minlength||signUpForm.username.$error.minlength) && signUpForm.username.$touched">用户名长度为4-32位</p>
@@ -49,6 +50,7 @@
                        class="form-control"
                        ng-model="userdata.password1"
                        ng-minlength="6"
+                       placeholder="请输入6位以上的密码"
                        required>
                 <p class="fa fa-check moveCheck" ng-if="signUpForm.password1.$valid"></p>
                 <p class="inputError" ng-if="signUpForm.password1.$error.minlength && signUpForm.password1.$touched">请输入至少6位的密码</p>
@@ -61,6 +63,7 @@
                        class="form-control"
                        ng-model="userdata.password2"
                        compare="userdata.password1"
+                       placeholder="请在输入一次密码"
                        required>
                 <p class="fa fa-check moveCheck" ng-if="signUpForm.password2.$valid"></p>
                 <p class="inputError" ng-if="signUpForm.password2.$error.compare && signUpForm.password2.$touched">请输入相同的密码</p>
